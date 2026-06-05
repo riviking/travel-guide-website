@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    header("Location: admin-login.php");
+    exit();
+}
 include('includes/db.php');
 include('includes/navbar.php');
 ?>
@@ -29,7 +34,7 @@ include('includes/navbar.php');
                     <th style="padding: 12px; border: 1px solid #ddd;">ID</th>
                     <th style="padding: 12px; border: 1px solid #ddd;">Name</th>
                     <th style="padding: 12px; border: 1px solid #ddd;">Country</th>
-                    <th style="padding: 12px; border: 1px solid #ddd;">Location</th>
+                    <th style="padding: 12px; border: 1px solid #ddd;">Image</th>
                     <th style="padding: 12px; border: 1px solid #ddd;">Actions</th>
                 </tr>
             </thead>
@@ -47,7 +52,7 @@ include('includes/navbar.php');
                                 <td style='padding: 12px; border: 1px solid #ddd;'>{$row['id']}</td>
                                 <td style='padding: 12px; border: 1px solid #ddd;'>{$row['name']}</td>
                                 <td style='padding: 12px; border: 1px solid #ddd;'>{$row['country_name']}</td>
-                                <td style='padding: 12px; border: 1px solid #ddd;'>{$row['location']}</td>
+                                <td style='padding: 12px; border: 1px solid #ddd;'>{$row['image']}</td>
                                 <td style='padding: 12px; border: 1px solid #ddd;'>
                                     <a href='manage-places.php?delete={$row['id']}' 
                                        class='btn-del' 

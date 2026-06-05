@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    header("Location: admin-login.php");
+    exit();
+}
 include('includes/db.php');
 include('includes/navbar.php');
 ?>
@@ -14,11 +19,11 @@ include('includes/navbar.php');
         if (isset($_POST['submit'])) {
             $name = $conn->real_escape_string($_POST['name']);
             $country_id = intval($_POST['country_id']);
-            $location = $conn->real_escape_string($_POST['location']);
             $description = $conn->real_escape_string($_POST['description']);
+            $image = $conn->real_escape_string($_POST['image']);
 
-            $sql = "INSERT INTO places (name, country_id, location, description) 
-                    VALUES ('$name', '$country_id', '$location', '$description')";
+            $sql = "INSERT INTO places (name, country_id, description, image) 
+                    VALUES ('$name', '$country_id', '$description', '$image')";
             
             if ($conn->query($sql) === TRUE) {
                 echo "<div class='alert success'>Place added successfully!</div>";
@@ -48,8 +53,8 @@ include('includes/navbar.php');
             </div>
 
             <div class="form-group">
-                <label>Location</label>
-                <input type="text" name="location" required placeholder="e.g. Honshu Island">
+                <label>Image Filename</label>
+                <input type="text" name="image" placeholder="e.g. fuji.jpg">
             </div>
 
             <div class="form-group">

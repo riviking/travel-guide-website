@@ -27,6 +27,14 @@ include('includes/navbar.php');
                 <h3>Places</h3>
                 <a href="add-place.php" class="btn-submit" style="display: inline-block; text-decoration: none; margin-top: 10px;">Add New Place</a>
             </div>
+            <div class="card" style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; text-align: center;">
+                <h3>Blog Posts</h3>
+                <a href="#" class="btn-submit" style="display: inline-block; text-decoration: none; margin-top: 10px;">Manage Blogs</a>
+            </div>
+            <div class="card" style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; text-align: center;">
+                <h3>Travel Tips</h3>
+                <a href="#" class="btn-submit" style="display: inline-block; text-decoration: none; margin-top: 10px;">Manage Tips</a>
+            </div>
         </div>
     </div>
 </div>

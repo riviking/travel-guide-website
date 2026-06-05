@@ -14,8 +14,8 @@ if (isset($_POST['login'])) {
     $result = $stmt->get_result();
 
     if ($row = $result->fetch_assoc()) {
-        // Verify the password hash
-        if (password_verify($password, $row['password'])) {
+        // Compare plain text passwords
+        if ($password === $row['password']) {
             $_SESSION['admin_logged_in'] = true;
             header("Location: admin-dashboard.php");
             exit();

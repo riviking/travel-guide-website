@@ -1,8 +1,8 @@
 <?php
 
-$host = "localhost";
+$host = "mysql://root:QvmKzUJiCnluNFsixCDbPWfPBmGnaPCy@zephyr.proxy.rlwy.net:29464/railway";
 $user = "root";
-$password = "";
+$password = "QvmKzUJiCnluNFsixCDbPWfPBmGnaPCy";
 $database = "travel_guide"; // change if needed
 
 $conn = new mysqli($host, $user, $password, $database);

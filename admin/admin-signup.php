@@ -21,9 +21,8 @@ if (isset($_POST['signup'])) {
         if ($result->num_rows > 0) {
             $error = "Username already taken!";
         } else {
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $stmt = $conn->prepare("INSERT INTO admins (username, password) VALUES (?, ?)");
-            $stmt->bind_param("ss", $username, $hashed_password);
+            $stmt->bind_param("ss", $username, $password);
             if ($stmt->execute()) {
                 $success = "Admin account created successfully! <a href='admin-login.php'>Login here</a>";
             } else {
