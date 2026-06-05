@@ -1,7 +1,7 @@
 <?php
 session_start();
-include('includes/db.php');
-include('includes/navbar.php');
+include('../includes/db.php');
+include('../includes/navbar.php');
 
 if (isset($_POST['signup'])) {
     $username = $conn->real_escape_string($_POST['username']);
@@ -87,4 +87,4 @@ document.getElementById('signupForm').onsubmit = function(e) {
 };
 </script>
 
-<?php include('includes/footer.php'); ?>
+<?php include('../includes/footer.php'); ?>

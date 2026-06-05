@@ -1,7 +1,7 @@
 <?php
 session_start();
-include('includes/db.php');
-include('includes/navbar.php');
+include('../includes/db.php');
+include('../includes/navbar.php');
 
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
@@ -75,4 +75,4 @@ document.getElementById('loginForm').onsubmit = function(e) {
 };
 </script>
 
-<?php include('includes/footer.php'); ?>
+<?php include('../includes/footer.php'); ?>

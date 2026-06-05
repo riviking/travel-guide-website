@@ -4,8 +4,8 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
     header("Location: admin-login.php");
     exit();
 }
-include('includes/db.php');
-include('includes/navbar.php');
+include('../includes/db.php');
+include('../includes/navbar.php');
 ?>
 <link rel="stylesheet" href="../assets/css/admin.css">
 
@@ -67,4 +67,4 @@ include('includes/navbar.php');
     </div>
 </div>
 
-<?php include('includes/footer.php'); ?>
+<?php include('../includes/footer.php'); ?>

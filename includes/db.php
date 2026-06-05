@@ -1,11 +1,12 @@
 <?php
 
-$host = "mysql://root:QvmKzUJiCnluNFsixCDbPWfPBmGnaPCy@zephyr.proxy.rlwy.net:29464/railway";
+$host = "zephyr.proxy.rlwy.net";
+$port = 29464;
 $user = "root";
 $password = "QvmKzUJiCnluNFsixCDbPWfPBmGnaPCy";
-$database = "travel_guide"; // change if needed
+$database = "travel_guide";
 
-$conn = new mysqli($host, $user, $password, $database);
+$conn = new mysqli($host, $user, $password, $database, $port);
 
 if ($conn->connect_error) {
     die("DB Connection Failed: " . $conn->connect_error);
