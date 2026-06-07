@@ -4,15 +4,10 @@ include('includes/navbar.php');
 
 $place_id = intval($_GET['id'] ?? 0);
 
-// Fetch place + details
-$sql = "SELECT p.*, 
-               d.long_description, 
-               d.history, 
-               d.best_time_to_visit, 
-               d.entry_fee, 
-               d.map_link
+// Fetch place + details using JOIN
+$sql = "SELECT p.*, pd.long_description, pd.history, pd.best_time_to_visit, pd.entry_fee, pd.map_link
         FROM places p
-        LEFT JOIN place_details d ON p.id = d.place_id
+        LEFT JOIN place_details pd ON p.id = pd.place_id
         WHERE p.id = ?";
 
 $stmt = $conn->prepare($sql);
@@ -33,8 +28,7 @@ $bgImage = !empty($place['image'])
     ? 'assets/images/' . $place['image']
     : 'assets/images/places/default.jpg';
 ?>
-
-
+<link rel="stylesheet" href="assets/css/style.css">
 <style>
 .place-page {
     min-height: 100vh;
@@ -141,11 +135,9 @@ $bgImage = !empty($place['image'])
 
     <!-- HERO -->
     <div class="place-hero">
-        
         <h1><?php echo htmlspecialchars($place['name']); ?></h1>
         <p><?php echo htmlspecialchars($place['description']); ?></p>
     </div>
-
 
     <!-- CONTENT -->
     <div class="place-content">
@@ -185,14 +177,16 @@ $bgImage = !empty($place['image'])
         <?php if (!empty($place['map_link'])) { ?>
         <div class="section">
             <h2>📍 Location</h2>
-            <a class="map-btn" target="_blank"
-               href="<?php echo htmlspecialchars($place['map_link']); ?>">
-                View on Google Maps
-            </a>
+            <iframe
+                src="https://maps.google.com/maps?q=<?php echo urlencode($place['name']); ?>&output=embed"
+                width="100%"
+                height="400"
+                style="border: none; border-radius: 10px; margin-top: 10px; display: block;"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
-
-        
-
         <?php } ?>
 
     </div>
