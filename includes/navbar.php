@@ -84,11 +84,12 @@
         <div class="hamburger" onclick="toggleMenu()">☰</div>
 
         <div class="nav-links" id="navLinks">
-            <a href="index.php">Home</a>
-            <a href="countries.php">Countries</a>
-            <a href="places.php">Places</a>
-            <a href="blog.php">Blog</a>
-            <a href="tips.php">Tips</a>
+            <a href="http://localhost/travel-guide-website/index.php">Home</a>
+            <a href="http://localhost/travel-guide-website/countries.php">Countries</a>
+            <a href="http://localhost/travel-guide-website/places.php">Places</a>
+            <a href="http://localhost/travel-guide-website/blog.php">Blog</a>
+            <a href="http://localhost/travel-guide-website/tips.php">Tips</a>
+            <a href="http://localhost/travel-guide-website/admin/admin-login.php ">Admin</a>
         </div>
     </div>
 </nav>
