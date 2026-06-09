@@ -2,7 +2,6 @@
 include('includes/db.php');
 include('includes/navbar.php'); 
 ?>
-
 <link rel="stylesheet" href="assets/css/style.css">
 
 <style>
