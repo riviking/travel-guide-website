@@ -170,7 +170,7 @@ include('includes/navbar.php');
             <img src="<?php echo $img; ?>" loading="lazy">
             <div class="card-body">
                 <h3><?php echo htmlspecialchars($row['name']); ?></h3>
-                <p><?php echo htmlspecialchars($row['category'] ?? 'Unknown'); ?></p>
+                <p><?php echo htmlspecialchars($row['description'] ?? 'Unknown'); ?></p>
                 <div class="rating">
                     ⭐ <?php echo (!empty($row['rating'])) ? htmlspecialchars($row['rating']) : 'N/A'; ?>/5.0
                 </div>
