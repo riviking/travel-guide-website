@@ -25,7 +25,12 @@ if (!$place) {
 
 // Background image
 $bgImage = !empty($place['image'])
-    ? 'assets/images/' . $place['image']
+    ? 'assets/images/' . 
+        str_replace(
+            '.webp',
+            '.jpg',
+            str_replace('places/thumbs/', 'places/full/', $place['image'])
+        )
     : 'assets/images/places/default.jpg';
 ?>
 <link rel="stylesheet" href="assets/css/style.css">
