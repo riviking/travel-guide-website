@@ -167,7 +167,7 @@ include('includes/navbar.php');
     ?>
 
         <div class="card" data-name="<?php echo strtolower(htmlspecialchars($row['name'])); ?>">
-            <img src="<?php echo $img; ?>">
+            <img src="<?php echo $img; ?>" loading="lazy">
             <div class="card-body">
                 <h3><?php echo htmlspecialchars($row['name']); ?></h3>
                 <p><?php echo htmlspecialchars($row['category'] ?? 'Unknown'); ?></p>
