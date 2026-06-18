@@ -24,11 +24,16 @@ $country = $result->fetch_assoc();
 
 <link rel="stylesheet" href="assets/css/style.css">
 
-<div class="container">
+<div class="page-background page-places" style="background-image: url('assets/images/backgrounds/places.jpg'); background-size: cover; background-attachment: fixed;">
+    <div class="main-content-wrapper">
+        <div class="title-container">
+            <h1 class="page-title">Places in <?php echo htmlspecialchars($country['name']); ?></h1>
+        </div>
 
-<h1>Places in <?php echo $country['name']; ?></h1>
+        <div class="bluish-section"></div>
 
-<div class="grid">
+        <div class="container">
+            <div class="grid">
 
 <?php
 $sql = "SELECT * FROM places WHERE country_id = ?";
@@ -40,12 +45,10 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
 
-        // Use place image from DB or fall back to country image
-        if (!empty($row['image']) && file_exists(__DIR__ . '/assets/images/' . $row['image'])) {
-            $place_img = 'assets/images/' . $row['image'];
-        } else {
-            $place_img = 'assets/images/' . ($country['image'] ?? 'countries/sri_lanka.jpg');
-        }
+        // Strip the 'places/thumbs/' and 'places/' prefixes from DB
+        $imageName = str_replace('places/thumbs/', '', $row['image']);
+        $imageName = str_replace('places/', '', $imageName);
+        $place_img = 'assets/images/places/' . $imageName;
 ?>
 
     <div class="card">
@@ -69,7 +72,8 @@ if ($result->num_rows > 0) {
 ?>
 
 </div> <!-- .grid -->
-
-</div> <!-- .container -->
+            </div> <!-- .container -->
+        </div> <!-- .main-content-wrapper -->
+    </div> <!-- .page-background -->
 
 <?php include('includes/footer.php'); ?>

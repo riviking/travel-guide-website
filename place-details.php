@@ -24,13 +24,12 @@ if (!$place) {
 }
 
 // Background image
-$bgImage = !empty($place['image'])
-    ? 'assets/images/' . 
-        str_replace(
-            '.webp',
-            '.jpg',
-            str_replace('places/thumbs/', 'places/full/', $place['image'])
-        )
+$imageName = $place['image'] ?? '';
+// Strip the 'places/thumbs/' and 'places/' prefixes
+$imageName = str_replace('places/thumbs/', '', $imageName);
+$imageName = str_replace('places/', '', $imageName);
+$bgImage = !empty($imageName) 
+    ? 'assets/images/places/' . $imageName
     : 'assets/images/places/default.jpg';
 ?>
 <link rel="stylesheet" href="assets/css/style.css">

@@ -47,12 +47,10 @@ if (!$result) {
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        // Compute image path (DB stores like 'places/eiffel-tower.jpg')
-        if (!empty($row['image']) && file_exists(__DIR__ . '/assets/images/' . $row['image'])) {
-            $img = 'assets/images/' . $row['image'];
-        } else {
-            $img = 'assets/images/places/default.jpg';
-        }
+        // Strip the 'places/thumbs/' and 'places/' prefixes
+        $imageName = str_replace('places/thumbs/', '', $row['image']);
+        $imageName = str_replace('places/', '', $imageName);
+        $img = 'assets/images/places/' . $imageName;
 
 ?>
 

@@ -11,7 +11,7 @@ include('includes/navbar.php');
             <h1 class="page-title">🗺️ Places</h1>
         </div>
 
-        <div class="bluish-section"></div>
+        
 
 <style>
 .filter-section {
@@ -159,11 +159,12 @@ include('includes/navbar.php');
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            if (!empty($row['image']) && file_exists(__DIR__ . '/assets/images/' . $row['image'])) {
-                $img = 'assets/images/' . $row['image'];
-            } else {
-                $img = 'assets/images/places/default.jpg';
-            }
+            $imageName = $row['image'];
+            // Remove 'places/thumbs/' prefix if it exists in DB
+            $imageName = str_replace('places/thumbs/', '', $imageName);
+            $imageName = str_replace('places/', '', $imageName);
+            // Construct the path
+            $img = 'assets/images/places/' . $imageName;
     ?>
 
         <div class="card" data-name="<?php echo strtolower(htmlspecialchars($row['name'])); ?>">
