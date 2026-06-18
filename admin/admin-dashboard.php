@@ -29,12 +29,15 @@ include('../includes/navbar.php');
             </div>
             <div class="card" style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; text-align: center;">
                 <h3>Blog Posts</h3>
-                <a href="#" class="btn-submit" style="display: inline-block; text-decoration: none; margin-top: 10px;">Manage Blogs</a>
+                <a href="blog-manage.php" class="btn-submit" style="display: inline-block; text-decoration: none; margin-top: 10px;">Manage Blogs</a>
             </div>
             <div class="card" style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; text-align: center;">
                 <h3>Travel Tips</h3>
-                <a href="#" class="btn-submit" style="display: inline-block; text-decoration: none; margin-top: 10px;">Manage Tips</a>
+                <a href="tips-manage.php" class="btn-submit" style="display: inline-block; text-decoration: none; margin-top: 10px;">Manage Tips</a>
             </div>
+         
+
+            
         </div>
     </div>
 </div>

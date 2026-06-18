@@ -9,40 +9,55 @@ if ($country_id == 0) {
 }
 
 // Get country details
-$country_sql = "SELECT * FROM countries WHERE id = $country_id";
-$country = $conn->query($country_sql)->fetch_assoc();
+$country_sql = "SELECT * FROM countries WHERE id = ?";
+$stmt = $conn->prepare($country_sql);
+$stmt->bind_param("i", $country_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows == 0) {
+    die("Country not found.");
+}
+
+$country = $result->fetch_assoc();
 ?>
 
-<h1 style="padding:20px;">
-    Places in <?php echo $country['name']; ?>
-</h1>
+<link rel="stylesheet" href="assets/css/style.css">
+
+<div class="container">
+
+<h1>Places in <?php echo $country['name']; ?></h1>
 
 <div class="grid">
 
 <?php
-$sql = "SELECT * FROM places WHERE country_id = $country_id";
-$result = $conn->query($sql);
+$sql = "SELECT * FROM places WHERE country_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $country_id);
+$stmt->execute();
+$result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
 
-        $img_sql = "SELECT image_url FROM place_images WHERE place_id = {$row['id']} LIMIT 1";
-        $img_result = $conn->query($img_sql);
-        $img = $img_result->fetch_assoc();
+        // Use place image from DB or fall back to country image
+        if (!empty($row['image']) && file_exists(__DIR__ . '/assets/images/' . $row['image'])) {
+            $place_img = 'assets/images/' . $row['image'];
+        } else {
+            $place_img = 'assets/images/' . ($country['image'] ?? 'countries/sri_lanka.jpg');
+        }
 ?>
 
     <div class="card">
 
-        <img src="assets/images/<?php echo $img['image_url'] ?? 'default.jpg'; ?>" 
-             style="width:100%; height:150px; object-fit:cover; border-radius:10px;">
+        <img src="<?php echo $place_img; ?>">
 
-        <h3><?php echo $row['name']; ?></h3>
-        <p><?php echo $row['location']; ?></p>
-        <p><?php echo substr($row['description'], 0, 80); ?>...</p>
+        <div class="card-body">
+            <h3><?php echo $row['name']; ?></h3>
+            <p><?php echo substr($row['description'], 0, 80); ?>...</p>
 
-        <a href="place-details.php?id=<?php echo $row['id']; ?>">
-            View Details
-        </a>
+            <a class="btn" href="place-details.php?id=<?php echo $row['id']; ?>">View Details</a>
+        </div>
 
     </div>
 
@@ -53,6 +68,8 @@ if ($result->num_rows > 0) {
 }
 ?>
 
-</div>
+</div> <!-- .grid -->
+
+</div> <!-- .container -->
 
 <?php include('includes/footer.php'); ?>

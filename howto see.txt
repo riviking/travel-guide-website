@@ -1,0 +1,2 @@
+http://localhost/travelGuideWeb/index.php
+http://localhost/travelGuideWeb/

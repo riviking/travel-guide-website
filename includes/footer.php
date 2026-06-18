@@ -4,6 +4,7 @@
 
     <p>
         Explore the world 🌍 | Built by Rivindu
+        <a href="admin/admin-login.php"  style="color:red;">Admin Panel</a>
     </p>
 
 </footer>
