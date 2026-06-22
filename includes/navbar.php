@@ -3,6 +3,8 @@
 // This file contains only CSS and the navbar HTML
 
 // Note: Include this file AFTER all PHP logic and header() calls
+require_once __DIR__ . '/auth.php';
+$navBase = (basename(dirname($_SERVER['SCRIPT_NAME'])) === 'admin') ? '../' : '';
 ?>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -80,6 +82,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-links a:hover {
     opacity: 0.8;
+}
+
+.nav-user-link {
+    font-weight: 700;
 }
 
 /* hamburger */
@@ -280,12 +286,19 @@ body.dark-mode .bluish-section {
         <div class="hamburger" onclick="toggleMenu()">☰</div>
 
         <div class="nav-links" id="navLinks">
-            <a href="http://localhost/travel-guide-website/index.php"><i class="fas fa-home"></i> Home</a>
-            <a href="http://localhost/travel-guide-website/countries.php"><i class="fas fa-flag"></i> Countries</a>
-            <a href="http://localhost/travel-guide-website/places.php"><i class="fas fa-map-location-dot"></i> Places</a>
-            <a href="http://localhost/travel-guide-website/blog.php"><i class="fas fa-pen-fancy"></i> Blog</a>
-            <a href="http://localhost/travel-guide-website/tips.php"><i class="fas fa-lightbulb"></i> Tips</a>
-            <a href="http://localhost/travel-guide-website/admin/admin-login.php"><i class="fas fa-lock"></i> Admin</a>
+            <a href="<?php echo $navBase; ?>index.php"><i class="fas fa-home"></i> Home</a>
+            <a href="<?php echo $navBase; ?>countries.php"><i class="fas fa-flag"></i> Countries</a>
+            <a href="<?php echo $navBase; ?>places.php"><i class="fas fa-map-location-dot"></i> Places</a>
+            <a href="<?php echo $navBase; ?>blog.php"><i class="fas fa-pen-fancy"></i> Blog</a>
+            <a href="<?php echo $navBase; ?>tips.php"><i class="fas fa-lightbulb"></i> Tips</a>
+            <?php if (is_user_logged_in()): ?>
+                <a class="nav-user-link" href="<?php echo $navBase; ?>profile.php"><i class="fas fa-user-circle"></i> <?php echo htmlspecialchars(current_user_name()); ?></a>
+                <a href="<?php echo $navBase; ?>logout.php"><i class="fas fa-right-from-bracket"></i> Logout</a>
+            <?php else: ?>
+                <a href="<?php echo $navBase; ?>login.php"><i class="fas fa-right-to-bracket"></i> Login</a>
+                <a href="<?php echo $navBase; ?>register.php"><i class="fas fa-user-plus"></i> Register</a>
+            <?php endif; ?>
+            <a href="<?php echo $navBase; ?>admin/admin-login.php"><i class="fas fa-lock"></i> Admin</a>
             <button class="dark-mode-toggle" id="darkModeToggle" title="Toggle Dark Mode">
                 <i class="fas fa-moon"></i>
             </button>

@@ -2,7 +2,6 @@
 include('includes/db.php');
 include('includes/navbar.php');
 
-// Fetch blog
 $sql = "SELECT * FROM blog ORDER BY created_at DESC";
 $result = $conn->query($sql);
 
@@ -12,181 +11,229 @@ if (!$result) {
 ?>
 
 <link rel="stylesheet" href="assets/css/style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<div class="page-background page-countries" style="background-image: url('assets/images/backgrounds/blog.jpg'); background-size: cover; background-attachment: fixed;">
-    <div class="main-content-wrapper">
-        <div class="title-container">
-            <h1 class="page-title">Blogs</h1>
-        </div>
+<style>
+    .blog-page {
+        min-height: 100vh;
+        padding: 56px 20px 72px;
+        background: url('assets/images/backgrounds/blog.jpg') center / cover fixed;
+    }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Travel Blog</title>
+    .blog-shell {
+        max-width: 1620px;
+        margin: 0 auto;
+    }
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    .blog-page-title {
+        color: #ffffff;
+        font-size: clamp(2.4rem, 6vw, 3.8rem);
+        font-weight: 800;
+        margin-bottom: 70px;
+        text-shadow: 0 3px 14px rgba(15, 23, 42, 0.42);
+    }
 
-    <style>
-        body {
-            background: #f5f5f5;
+    .blog-section-title {
+        color: #111827;
+        font-size: clamp(2rem, 4vw, 2.6rem);
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .blog-card {
+        height: 100%;
+        overflow: hidden;
+        background: #ffffff;
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        border-radius: 10px;
+        box-shadow: 0 16px 38px rgba(15, 23, 42, 0.15);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(37, 99, 235, 0.32);
+        box-shadow: 0 24px 46px rgba(15, 23, 42, 0.2);
+    }
+
+    .blog-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .blog-card:hover .blog-image {
+        transform: scale(1.04);
+    }
+
+    .blog-body {
+        padding: 20px;
+    }
+
+    .blog-meta {
+        color: #64748b;
+        font-size: 0.88rem;
+        margin-bottom: 14px;
+    }
+
+    .blog-meta i {
+        color: #5b35b1;
+        margin-right: 5px;
+    }
+
+    .blog-title {
+        color: #111827;
+        font-size: 1.22rem;
+        font-weight: 800;
+        line-height: 1.35;
+        margin-bottom: 8px;
+    }
+
+    .blog-body p {
+        color: #1f2937;
+        font-size: 1.03rem;
+        line-height: 1.48;
+        margin-bottom: 22px;
+    }
+
+    .btn-read {
+        display: inline-block;
+        padding: 9px 16px;
+        background: #0b84ff;
+        color: #ffffff;
+        border-radius: 6px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-read:hover {
+        background: #0069d9;
+        color: #ffffff;
+        text-decoration: none;
+        transform: translateY(-1px);
+    }
+
+    .blog-empty {
+        color: #111827;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    body.dark-mode .blog-page {
+        background:
+            linear-gradient(rgba(3, 7, 18, 0.52), rgba(3, 7, 18, 0.72)),
+            url('assets/images/backgrounds/blog.jpg') center / cover fixed;
+    }
+
+    body.dark-mode .blog-page-title {
+        color: #f8fafc;
+        text-shadow: 0 4px 18px rgba(0, 0, 0, 0.75);
+    }
+
+    body.dark-mode .blog-section-title {
+        color: #f8fafc;
+        text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45);
+    }
+
+    body.dark-mode .blog-card {
+        background: #111827;
+        border-color: #263244;
+        box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+    }
+
+    body.dark-mode .blog-card:hover {
+        background: #162033;
+        border-color: #3b82f6;
+        box-shadow: 0 24px 54px rgba(0, 0, 0, 0.58);
+    }
+
+    body.dark-mode .blog-meta {
+        color: #aab7c8;
+    }
+
+    body.dark-mode .blog-title {
+        color: #f8fafc;
+    }
+
+    body.dark-mode .blog-body p {
+        color: #dbe4ef;
+    }
+
+    body.dark-mode .blog-empty {
+        color: #f8fafc;
+    }
+
+    @media (max-width: 768px) {
+        .blog-page {
+            padding: 36px 14px 56px;
+            background-attachment: scroll;
         }
 
-        .blog-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            height: 100%;
-            transition: all 0.3s ease;
+        body.dark-mode .blog-page {
+            background-attachment: scroll;
         }
 
-        .blog-card:hover {
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            transform: translateY(-5px);
+        .blog-page-title {
+            margin-bottom: 42px;
         }
 
         .blog-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
+            height: 210px;
         }
-
-        .blog-card:hover .blog-image {
-            transform: scale(1.05);
-        }
-
-        .blog-body {
-            padding: 15px;
-        }
-
-        .blog-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .blog-meta {
-            font-size: 13px;
-            color: gray;
-            margin-bottom: 10px;
-        }
-
-        .btn-read {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 12px;
-            background: #007bff;
-            color: white;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .btn-read:hover {
-            background: #0056b3;
-            text-decoration: none;
-        }
-
-        /* ===== Dark Mode Styles ===== */
-        body.dark-mode {
-            background: #1a1a1a;
-        }
-
-        body.dark-mode .blog-card {
-            background: #2a2a2a;
-            border: 1px solid rgba(100, 100, 150, 0.2);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        body.dark-mode .blog-card:hover {
-            background: #333333;
-            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.25);
-        }
-
-        body.dark-mode .blog-title {
-            color: #e0e0e0;
-        }
-
-        body.dark-mode .blog-meta {
-            color: #888;
-        }
-
-        body.dark-mode .blog-body p {
-            color: #b0b0b0;
-        }
-
-        body.dark-mode .btn-read {
-            background: linear-gradient(135deg, #1e90ff, #0077e6);
-        }
-
-        body.dark-mode .btn-read:hover {
-            background: linear-gradient(135deg, #0077e6, #005cc2);
-        }
-    </style>
-</head>
-
-<body>
-
-<div class="container py-5">
-
-    <h2 class="text-center mb-4">Latest Travel Blog</h2>
-
-    <div class="row g-4">
-
-    <?php
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-
-            // IMAGE FIX
-            $image = !empty($row['image'])
-                ? 'assets/images/' . $row['image']
-                : 'assets/images/blogs/default.jpg';
-    ?>
-
-        <div class="col-md-4">
-
-            <div class="blog-card">
-
-                <img src="<?php echo $image; ?>" class="blog-image">
-
-                <div class="blog-body">
-
-                    <div class="blog-meta">
-                        👤 <?php echo htmlspecialchars($row['author']); ?> |
-                        📅 <?php echo date('M d, Y', strtotime($row['created_at'])); ?>
-                    </div>
-
-                    <div class="blog-title">
-                        <?php echo htmlspecialchars($row['title']); ?>
-                    </div>
-
-                    <p>
-                        <?php echo substr(strip_tags($row['content']), 0, 120); ?>...
-                    </p>
-
-                    <a href="blog-details.php?id=<?php echo $row['id']; ?>" class="btn-read">
-                        Read More →
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    <?php
-        }
-    } else {
-        echo "<p class='text-center'>No blogs found</p>";
     }
-    ?>
+</style>
 
+<main class="blog-page">
+    <div class="blog-shell">
+        <h1 class="blog-page-title">Blogs</h1>
+        <h2 class="blog-section-title">Latest Travel Blog</h2>
+
+        <div class="row g-4">
+            <?php if ($result->num_rows > 0) { ?>
+                <?php while ($row = $result->fetch_assoc()) { ?>
+                    <?php
+                    $image = !empty($row['image'])
+                        ? 'assets/images/' . $row['image']
+                        : 'assets/images/blogs/default.jpg';
+                    ?>
+
+                    <div class="col-md-4">
+                        <article class="blog-card">
+                            <img src="<?php echo htmlspecialchars($image); ?>" class="blog-image" alt="<?php echo htmlspecialchars($row['title']); ?>">
+
+                            <div class="blog-body">
+                                <div class="blog-meta">
+                                    <i class="fas fa-user"></i>
+                                    <?php echo htmlspecialchars($row['author']); ?>
+                                    <span>|</span>
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <?php echo date('M d, Y', strtotime($row['created_at'])); ?>
+                                </div>
+
+                                <div class="blog-title">
+                                    <?php echo htmlspecialchars($row['title']); ?>
+                                </div>
+
+                                <p>
+                                    <?php echo substr(strip_tags($row['content']), 0, 120); ?>...
+                                </p>
+
+                                <a href="blog-details.php?id=<?php echo $row['id']; ?>" class="btn-read">
+                                    Read More <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                <?php } ?>
+            <?php } else { ?>
+                <p class="blog-empty">No blogs found.</p>
+            <?php } ?>
+        </div>
     </div>
-</div>
-
-</body>
-</html>
+</main>
 
 <?php include('includes/footer.php'); ?>

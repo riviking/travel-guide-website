@@ -1,5 +1,6 @@
 <?php
 include('includes/db.php');
+include('includes/auth.php');
 include('includes/navbar.php');
 
 $place_id = intval($_GET['id'] ?? 0);
@@ -21,6 +22,15 @@ if (!$place) {
     echo "<h2 style='text-align:center;margin-top:50px;'>Place not found</h2>";
     include('includes/footer.php');
     exit;
+}
+
+$isSaved = false;
+if (is_user_logged_in()) {
+    $savedStmt = $conn->prepare('SELECT id FROM saved_places WHERE user_id = ? AND place_id = ? LIMIT 1');
+    $userId = current_user_id();
+    $savedStmt->bind_param('ii', $userId, $place_id);
+    $savedStmt->execute();
+    $isSaved = $savedStmt->get_result()->num_rows > 0;
 }
 
 // Background image
@@ -134,6 +144,7 @@ $bgImage = !empty($imageName)
     margin-bottom: 20px;
 }
 </style>
+<link rel="stylesheet" href="assets/css/account.css">
 
 <div class="place-page">
 
@@ -141,6 +152,17 @@ $bgImage = !empty($imageName)
     <div class="place-hero">
         <h1><?php echo htmlspecialchars($place['name']); ?></h1>
         <p><?php echo htmlspecialchars($place['description']); ?></p>
+        <?php if (is_user_logged_in()): ?>
+            <form method="POST" action="save-place.php" class="save-place-form">
+                <input type="hidden" name="place_id" value="<?php echo (int) $place['id']; ?>">
+                <button type="submit" class="save-place-btn <?php echo $isSaved ? 'saved' : ''; ?>">
+                    <i class="<?php echo $isSaved ? 'fas' : 'far'; ?> fa-bookmark"></i>
+                    <?php echo $isSaved ? 'Saved to Profile' : 'Save Place'; ?>
+                </button>
+            </form>
+        <?php else: ?>
+            <p><a class="save-place-btn" href="login.php"><i class="fas fa-right-to-bracket"></i> Sign in to save this place</a></p>
+        <?php endif; ?>
     </div>
 
     <!-- CONTENT -->

@@ -1,5 +1,6 @@
 <?php 
 include('includes/db.php');
+include('includes/auth.php');
 include('includes/navbar.php');
 ?>
 
@@ -13,32 +14,91 @@ include('includes/navbar.php');
     </div>
     <div class="main-content-wrapper">
         <div class="title-container">
-            <h1 class="page-title">🗺️ Places</h1>
+            <h1 class="page-title"><i class="fas fa-map-marked-alt"></i> Places</h1>
         </div>
 
         
 
 <style>
+body.dark-mode .page-places {
+    background-color: rgba(4, 12, 20, 0.54);
+    background-blend-mode: multiply;
+}
+
+.page-places .breadcrumb {
+    background: rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.page-places .breadcrumb .current {
+    color: #475569;
+}
+
+body.dark-mode .page-places .breadcrumb {
+    background: rgba(15, 23, 42, 0.42);
+    border-color: rgba(148, 163, 184, 0.22);
+}
+
+body.dark-mode .page-places .breadcrumb .current,
+body.dark-mode .page-places .breadcrumb .separator {
+    color: #cbd5e1;
+}
+
+.page-places .page-title {
+    color: #ffffff;
+    text-shadow: 0 4px 16px rgba(15, 23, 42, 0.58);
+}
+
 /* Place Cards: 75% White + 25% Blue */
 .page-places .card {
-    background: rgba(173, 216, 255, 0.4);
+    background: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(173, 216, 255, 0.3);
+    border: 1px solid rgba(15, 23, 42, 0.1);
     box-shadow: 
-        0 4px 20px rgba(30, 144, 255, 0.06), 
+        0 14px 34px rgba(15, 23, 42, 0.18), 
         inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
     transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), background 0.4s ease, box-shadow 0.4s ease;
 }
 
 .page-places .card:hover {
     transform: translateY(-8px);
-    background: rgba(173, 216, 255, 0.75);
+    background: rgba(255, 255, 255, 0.96);
     box-shadow: 
-        0 20px 40px rgba(30, 144, 255, 0.22),
-        0 0 30px rgba(100, 180, 255, 0.3),
+        0 22px 44px rgba(15, 23, 42, 0.24),
+        0 0 30px rgba(30, 144, 255, 0.18),
         inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
     transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.page-places .card-body h3 {
+    color: #0f172a;
+}
+
+.page-places .card-body p {
+    color: #475569;
+}
+
+body.dark-mode .page-places .card {
+    background: #111827;
+    border-color: #263244;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.48);
+}
+
+body.dark-mode .page-places .card:hover {
+    background: #162033;
+    border-color: #3b82f6;
+    box-shadow: 0 24px 54px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .page-places .card-body h3 {
+    color: #f8fafc;
+}
+
+body.dark-mode .page-places .card-body p {
+    color: #dbe4ef;
 }
 
 .page-places .card:hover img {
@@ -125,9 +185,9 @@ include('includes/navbar.php');
 .search-bar {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.55);
     border-radius: 50px;
     padding: 10px 20px;
     gap: 10px;
@@ -139,22 +199,22 @@ include('includes/navbar.php');
     border: none;
     outline: none;
     font-size: 16px;
-    color: #fff;
+    color: #0f172a;
 }
 
 .search-bar input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(15, 23, 42, 0.65);
 }
 
 .search-bar .search-icon svg {
-    fill: rgba(255, 255, 255, 0.8);
+    fill: rgba(15, 23, 42, 0.72);
     display: block;
 }
 
 .search-bar .clear-btn {
     background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(15, 23, 42, 0.7);
     font-size: 18px;
     cursor: pointer;
     padding: 0;
@@ -163,7 +223,32 @@ include('includes/navbar.php');
 }
 
 .search-bar .clear-btn:hover {
-    color: #fff;
+    color: #0f172a;
+}
+
+body.dark-mode .page-places .search-bar {
+    background: rgba(15, 23, 42, 0.42);
+    border-color: rgba(226, 232, 240, 0.34);
+}
+
+body.dark-mode .page-places .search-bar input {
+    color: #f8fafc;
+}
+
+body.dark-mode .page-places .search-bar input::placeholder {
+    color: rgba(248, 250, 252, 0.76);
+}
+
+body.dark-mode .page-places .search-bar .search-icon svg {
+    fill: rgba(248, 250, 252, 0.82);
+}
+
+body.dark-mode .page-places .search-bar .clear-btn {
+    color: rgba(248, 250, 252, 0.76);
+}
+
+body.dark-mode .page-places .search-bar .clear-btn:hover {
+    color: #ffffff;
 }
 
 .no-results {
@@ -187,7 +272,7 @@ include('includes/navbar.php');
                 </svg>
             </span>
             <input type="text" id="placeSearch" placeholder="Search places..." autocomplete="off">
-            <button class="clear-btn" id="clearSearch" title="Clear search">✕</button>
+            <button class="clear-btn" id="clearSearch" title="Clear search">x</button>
         </div>
     </div>
 
@@ -217,7 +302,7 @@ include('includes/navbar.php');
                 <h3><?php echo htmlspecialchars($row['name']); ?></h3>
                 <p><?php echo htmlspecialchars($row['description'] ?? 'Unknown'); ?></p>
                 <div class="rating">
-                    ⭐ <?php echo (!empty($row['rating'])) ? htmlspecialchars($row['rating']) : 'N/A'; ?>/5.0
+                    <i class="fas fa-star"></i> <?php echo (!empty($row['rating'])) ? htmlspecialchars($row['rating']) : 'N/A'; ?>/5.0
                 </div>
                 <a href="place-details.php?id=<?php echo $row['id']; ?>" class="details-btn">
                     View Details
@@ -234,7 +319,7 @@ include('includes/navbar.php');
 
     </div> <!-- grid -->
 
-    <p class="no-results" id="noResults">😕 No places found matching your search.</p>
+    <p class="no-results" id="noResults">No places found matching your search.</p>
 
 </div> <!-- container -->
 

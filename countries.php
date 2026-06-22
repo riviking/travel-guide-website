@@ -43,6 +43,62 @@ include('includes/navbar.php');
     box-shadow: 0 4px 12px rgba(124, 58, 237, 0.45);
 }
 
+body.dark-mode .page-countries {
+    background-color: rgba(6, 8, 22, 0.58);
+    background-blend-mode: multiply;
+}
+
+body.dark-mode .page-countries .breadcrumb {
+    background: rgba(15, 23, 42, 0.42);
+    border-color: rgba(148, 163, 184, 0.22);
+}
+
+body.dark-mode .page-countries .breadcrumb .current,
+body.dark-mode .page-countries .breadcrumb .separator {
+    color: #cbd5e1;
+}
+
+body.dark-mode .page-countries .card {
+    background: #111827;
+    border-color: #312e81;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.48);
+}
+
+body.dark-mode .page-countries .card:hover {
+    background: #17172b;
+    border-color: #7c3aed;
+    box-shadow: 0 24px 54px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .page-countries .card-body h3 {
+    color: #f8fafc;
+}
+
+body.dark-mode .page-countries .card-body p {
+    color: #dbe4ef;
+}
+
+body.dark-mode .page-countries .search-bar {
+    background: rgba(15, 23, 42, 0.42);
+    border-color: rgba(226, 232, 240, 0.34);
+}
+
+body.dark-mode .page-countries .search-bar input {
+    color: #f8fafc;
+}
+
+body.dark-mode .page-countries .search-bar input::placeholder {
+    color: rgba(248, 250, 252, 0.76);
+}
+
+body.dark-mode .page-countries .search-bar .search-icon svg {
+    fill: rgba(248, 250, 252, 0.82);
+}
+
+body.dark-mode .page-countries .search-bar .clear-btn {
+    color: rgba(248, 250, 252, 0.76);
+}
+
 .search-wrapper {
     max-width: 1100px;
     margin: 0 auto 24px;
@@ -120,7 +176,7 @@ include('includes/navbar.php');
                         </svg>
                     </span>
                     <input type="text" id="countrySearch" placeholder="Search countries..." autocomplete="off">
-                    <button class="clear-btn" id="clearCountrySearch" title="Clear search">✕</button>
+                    <button class="clear-btn" id="clearCountrySearch" title="Clear search">x</button>
                 </div>
             </div>
 
@@ -166,7 +222,7 @@ if ($result->num_rows > 0) {
 
             </div> <!-- .grid -->
 
-            <p class="no-results" id="noCountryResults" style="display: none; text-align: center; padding: 20px; font-size: 18px; color: #666;">😕 No countries found matching your search.</p>
+            <p class="no-results" id="noCountryResults" style="display: none; text-align: center; padding: 20px; font-size: 18px; color: #666;">No countries found matching your search.</p>
         </div> <!-- .container -->
     </div>
 </div>

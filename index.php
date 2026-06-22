@@ -51,8 +51,9 @@ include('includes/navbar.php'); ?>
     <!-- Featured Section -->
     <section class="featured-section">
         <h2>Featured Destinations</h2>
-        <p>Check out some of the most visited and recommended places</p>
+            <p>Check out some of the most visited and recommended places</p>
         <a href="places.php" class="btn btn-secondary">See All Destinations</a>
+        <a href="register.php" class="btn btn-secondary">Create Your Profile</a>
     </section>
 </div>
 
@@ -67,6 +68,17 @@ body {
     background-attachment: fixed;
     color: #333;
 }
+
+body.dark-mode {
+    background-image:
+        linear-gradient(rgba(4, 7, 18, 0.58), rgba(4, 7, 18, 0.72)),
+        url('assets/images/backgrounds/home.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
+    color: #f8fafc;
+}
+
 .index-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -76,7 +88,7 @@ body {
 .hero-section {
     text-align: center;
     padding: 60px 20px;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.7) 0%, rgba(118, 75, 162, 0.7) 100%), url('assets/images/backgrounds/home.jpg');
+    background: url('assets/images/backgrounds/home.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -85,16 +97,27 @@ body {
     margin-bottom: 50px;
 }
 
+body.dark-mode .hero-section {
+    background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.72) 0%, rgba(49, 46, 129, 0.68) 100%),
+        url('assets/images/backgrounds/home.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 .hero-section h1 {
     font-size: 48px;
     margin-bottom: 20px;
     font-weight: bold;
+    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.62);
 }
 
 .hero-section p {
     font-size: 20px;
     margin: 0;
     opacity: 0.9;
+    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.58);
 }
 
 .navigation-section {
@@ -168,6 +191,26 @@ body {
     line-height: 1.6;
     flex-grow: 1;
     font-size: 0.95rem;
+}
+
+body.dark-mode .nav-card {
+    background: #111827;
+    border-color: #312e81;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.48);
+}
+
+body.dark-mode .nav-card:hover {
+    background: #17172b;
+    border-color: #7c3aed;
+    box-shadow: 0 24px 54px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .nav-card h2 {
+    color: #c4b5fd;
+}
+
+body.dark-mode .nav-card p {
+    color: #dbe4ef;
 }
 
 .btn {
@@ -256,6 +299,24 @@ body {
     color: #6b7280;
     margin-bottom: 30px;
     font-size: 1.05rem;
+}
+
+body.dark-mode .featured-section {
+    background: rgba(17, 24, 39, 0.9);
+    border-color: #312e81;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.48);
+}
+
+body.dark-mode .featured-section:hover {
+    background: rgba(23, 23, 43, 0.95);
+}
+
+body.dark-mode .featured-section h2 {
+    color: #c4b5fd;
+}
+
+body.dark-mode .featured-section p {
+    color: #dbe4ef;
 }
 
 @media (max-width: 768px) {
