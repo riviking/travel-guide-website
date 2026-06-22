@@ -1,7 +1,6 @@
 <?php
 session_start();
 include('../includes/db.php');
-include('../includes/navbar.php');
 
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
@@ -32,6 +31,8 @@ if (isset($_GET['logout'])) {
     header("Location: admin-login.php");
     exit();
 }
+
+include('../includes/navbar.php');
 ?>
 <link rel="stylesheet" href="../assets/css/admin.css">
 

@@ -38,12 +38,23 @@ if (!$result) {
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .blog-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
         }
 
         .blog-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover .blog-image {
+            transform: scale(1.05);
         }
 
         .blog-body {
@@ -53,6 +64,7 @@ if (!$result) {
         .blog-title {
             font-size: 18px;
             font-weight: bold;
+            color: #333;
         }
 
         .blog-meta {
@@ -69,6 +81,48 @@ if (!$result) {
             color: white;
             border-radius: 6px;
             text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-read:hover {
+            background: #0056b3;
+            text-decoration: none;
+        }
+
+        /* ===== Dark Mode Styles ===== */
+        body.dark-mode {
+            background: #1a1a1a;
+        }
+
+        body.dark-mode .blog-card {
+            background: #2a2a2a;
+            border: 1px solid rgba(100, 100, 150, 0.2);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode .blog-card:hover {
+            background: #333333;
+            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.25);
+        }
+
+        body.dark-mode .blog-title {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .blog-meta {
+            color: #888;
+        }
+
+        body.dark-mode .blog-body p {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .btn-read {
+            background: linear-gradient(135deg, #1e90ff, #0077e6);
+        }
+
+        body.dark-mode .btn-read:hover {
+            background: linear-gradient(135deg, #0077e6, #005cc2);
         }
     </style>
 </head>

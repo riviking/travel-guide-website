@@ -6,6 +6,11 @@ include('includes/navbar.php');
 <link rel="stylesheet" href="assets/css/style.css">
 
 <div class="page-background page-places" style="background-image: url('assets/images/backgrounds/places.jpg'); background-size: cover; background-attachment: fixed;">
+    <div class="breadcrumb" style="margin: 0 auto;">
+        <a href="index.php"><i class="fas fa-home"></i> Home</a>
+        <span class="separator">/</span>
+        <span class="current"><i class="fas fa-map-location-dot"></i> Places</span>
+    </div>
     <div class="main-content-wrapper">
         <div class="title-container">
             <h1 class="page-title">🗺️ Places</h1>
@@ -14,6 +19,45 @@ include('includes/navbar.php');
         
 
 <style>
+/* Place Cards: 75% White + 25% Blue */
+.page-places .card {
+    background: rgba(173, 216, 255, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(173, 216, 255, 0.3);
+    box-shadow: 
+        0 4px 20px rgba(30, 144, 255, 0.06), 
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.page-places .card:hover {
+    transform: translateY(-8px);
+    background: rgba(173, 216, 255, 0.75);
+    box-shadow: 
+        0 20px 40px rgba(30, 144, 255, 0.22),
+        0 0 30px rgba(100, 180, 255, 0.3),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.page-places .card:hover img {
+    transform: scale(1.07);
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.page-places .details-btn {
+    background: linear-gradient(135deg, #1e90ff 0%, #0077e6 100%);
+    box-shadow: 0 2px 6px rgba(30, 144, 255, 0.3);
+    transition: all 0.2s ease;
+}
+
+.page-places .details-btn:hover {
+    background: linear-gradient(135deg, #0077e6 0%, #005cc2 100%);
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.45);
+    transform: translateY(-2px);
+}
+
 .filter-section {
     max-width: 1100px;
     margin: 0 auto 20px;

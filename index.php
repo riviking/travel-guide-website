@@ -109,13 +109,18 @@ body {
 }
 
 .nav-card {
-    background: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
+    /* Glassmorphism: 70% White + 30% Purple */
+    background: rgba(216, 196, 250, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(216, 196, 250, 0.4);
+    border-radius: 14px;
     overflow: hidden;
     text-align: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 
+        0 4px 20px rgba(124, 58, 237, 0.08), 
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
     display: flex;
     flex-direction: column;
 }
@@ -124,6 +129,7 @@ body {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
 .nav-card > div:not(.card-icon) {
@@ -132,7 +138,14 @@ body {
 
 .nav-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    background: rgba(216, 196, 250, 0.75);
+    box-shadow: 
+        0 12px 28px rgba(124, 58, 237, 0.15), 
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+}
+
+.nav-card:hover img {
+    transform: scale(1.04);
 }
 
 .card-icon {
@@ -143,16 +156,18 @@ body {
 }
 
 .nav-card h2 {
-    font-size: 24px;
-    color: #333;
+    font-size: clamp(1.3rem, 4vw, 1.5rem);
+    color: #5b21b6;
     margin: 20px 0 10px 0;
+    font-weight: 700;
 }
 
 .nav-card p {
-    color: #666;
+    color: #6b7280;
     margin-bottom: 20px;
     line-height: 1.6;
     flex-grow: 1;
+    font-size: 0.95rem;
 }
 
 .btn {
@@ -170,55 +185,77 @@ body {
 }
 
 .btn-primary {
-    background-color: #667eea;
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
     color: white;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
 }
 
 .btn-primary:hover {
-    background-color: #5568d3;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.5);
 }
 
 .btn-primary:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(124, 58, 237, 0.3);
 }
 
 .btn-secondary {
-    background-color: #f0f0f0;
-    color: #333;
-    border: 2px solid #667eea;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #7c3aed;
+    border: 2px solid #7c3aed;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
 }
 
 .btn-secondary:hover {
-    background-color: #667eea;
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
     color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
+    border-color: #6d28d9;
 }
 
 .btn-secondary:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(124, 58, 237, 0.2);
 }
 
 .featured-section {
+    /* Glassmorphism: 70% White + 30% Purple Gradient */
+    background: linear-gradient(135deg, rgba(216, 196, 250, 0.65) 0%, rgba(230, 220, 250, 0.5) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(216, 196, 250, 0.4);
     text-align: center;
-    padding: 40px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
+    padding: 50px 40px;
+    border-radius: 14px;
+    box-shadow: 
+        0 4px 20px rgba(124, 58, 237, 0.08), 
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.featured-section:hover {
+    background: linear-gradient(135deg, rgba(216, 196, 250, 0.92) 0%, rgba(230, 220, 250, 0.82) 100%);
+    box-shadow: 
+        0 20px 40px rgba(124, 58, 237, 0.25),
+        0 0 35px rgba(167, 139, 250, 0.35),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .featured-section h2 {
-    font-size: 32px;
-    color: #333;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    color: #5b21b6;
     margin-bottom: 10px;
+    font-weight: 800;
 }
 
 .featured-section p {
-    color: #666;
+    color: #6b7280;
     margin-bottom: 30px;
+    font-size: 1.05rem;
 }
 
 @media (max-width: 768px) {

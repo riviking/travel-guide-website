@@ -668,3 +668,65 @@ textarea:focus {
         page-break-inside: avoid;
     }
 }
+
+/* ===================================
+   Dark Mode Styles
+   =================================== */
+
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .blog-section {
+    background: linear-gradient(180deg, #1f1f1f 0%, #1a1a1a 100%);
+}
+
+body.dark-mode .section-title {
+    color: #e0e0e0;
+}
+
+body.dark-mode .section-subtitle {
+    color: #b0b0b0;
+}
+
+body.dark-mode .blog-card {
+    background: #2a2a2a;
+    border: 1px solid rgba(100, 100, 150, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .blog-card:hover {
+    box-shadow: 0 8px 25px rgba(30, 144, 255, 0.2);
+    background: #333333;
+}
+
+body.dark-mode .blog-meta {
+    color: #888;
+}
+
+body.dark-mode .blog-date,
+body.dark-mode .blog-author {
+    color: #888;
+}
+
+body.dark-mode .blog-date:hover,
+body.dark-mode .blog-author:hover {
+    color: #1e90ff;
+}
+
+body.dark-mode .blog-title {
+    color: #e0e0e0;
+}
+
+body.dark-mode .blog-description {
+    color: #b0b0b0;
+}
+
+body.dark-mode .badge-category {
+    background: linear-gradient(135deg, #1e90ff, #0077e6);
+}
+
+body.dark-mode .hero-section {
+    background: linear-gradient(135deg, #0a0e27, #1a1f3a);
+}

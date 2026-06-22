@@ -76,6 +76,47 @@ if (!$result) {
             color: gray;
             margin-top: 10px;
         }
+
+        /* ===== Dark Mode Styles ===== */
+        body.dark-mode .tips-header {
+            background: linear-gradient(180deg, #1f1f1f 0%, #1a1a1a 100%);
+        }
+
+        body.dark-mode .tips-header h1 {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .tips-header p {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .tip-card {
+            background: #2a2a2a;
+            border: 1px solid rgba(100, 100, 150, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .tip-card:hover {
+            background: #333333;
+            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.2);
+        }
+
+        body.dark-mode .tip-title {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .tip-card p {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .tip-date {
+            color: #888;
+        }
+
+        body.dark-mode .tip-category {
+            background: linear-gradient(135deg, #1e90ff, #0077e6);
+            color: white;
+        }
     </style>
 </head>
 
