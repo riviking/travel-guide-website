@@ -52,7 +52,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* container */
 .navbar-inner {
-    max-width: 1100px;
+    width: 100%;
+    max-width: 1250px;
     margin: auto;
     padding: 15px 20px;
     display: flex;
@@ -70,13 +71,20 @@ h1, h2, h3, h4, h5, h6 {
 /* links */
 .nav-links {
     display: flex;
-    gap: 18px;
+    gap: 22px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
     font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
     transition: opacity 0.2s;
 }
 

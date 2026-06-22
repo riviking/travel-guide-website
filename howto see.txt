@@ -1,2 +1,16 @@
-http://localhost/travelGuideWeb/index.php
-http://localhost/travelGuideWeb/
+Open the project through XAMPP/Apache:
+
+http://localhost/travel-guide-website%20-%20Copy%20(2)/index.php
+
+Main pages:
+
+http://localhost/travel-guide-website%20-%20Copy%20(2)/countries.php
+http://localhost/travel-guide-website%20-%20Copy%20(2)/places.php
+http://localhost/travel-guide-website%20-%20Copy%20(2)/blog.php
+http://localhost/travel-guide-website%20-%20Copy%20(2)/tips.php
+http://localhost/travel-guide-website%20-%20Copy%20(2)/login.php
+http://localhost/travel-guide-website%20-%20Copy%20(2)/register.php
+
+Admin page:
+
+http://localhost/travel-guide-website%20-%20Copy%20(2)/admin/admin-login.php
