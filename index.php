@@ -5,6 +5,11 @@ include('includes/navbar.php'); ?>
 <div class="index-container">
     <!-- Hero Section -->
     <section class="hero-section">
+        <video class="hero-video" autoplay muted loop playsinline poster="assets/images/backgrounds/home.jpg">
+            <source src="assets/videos/travel-hero.mp4" type="video/mp4">
+            <source src="assets/videos/travel-hero.webm" type="video/webm">
+        </video>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>Welcome to Travel Guide</h1>
             <p>Discover the world's most beautiful destinations, hidden gems, and travel tips from our community.</p>
@@ -86,8 +91,11 @@ body.dark-mode {
 }
 
 .hero-section {
+    position: relative;
+    overflow: hidden;
     text-align: center;
-    padding: 60px 20px;
+    min-height: 360px;
+    padding: 90px 20px;
     background: url('assets/images/backgrounds/home.jpg');
     background-size: cover;
     background-position: center;
@@ -98,12 +106,33 @@ body.dark-mode {
 }
 
 body.dark-mode .hero-section {
-    background:
-        linear-gradient(135deg, rgba(15, 23, 42, 0.72) 0%, rgba(49, 46, 129, 0.68) 100%),
-        url('assets/images/backgrounds/home.jpg');
+    background: url('assets/images/backgrounds/home.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+}
+
+.hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.34);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 860px;
+    margin: 0 auto;
 }
 
 .hero-section h1 {
@@ -320,6 +349,12 @@ body.dark-mode .featured-section p {
 }
 
 @media (max-width: 768px) {
+    .hero-section {
+        min-height: 300px;
+        padding: 70px 18px;
+        background-attachment: scroll;
+    }
+
     .hero-section h1 {
         font-size: 32px;
     }
