@@ -53,7 +53,7 @@
     <!-- Copyright Bar -->
     <div class="footer-bottom">
         <p>&copy; <?php echo date("Y"); ?> Travel Guide. All Rights Reserved.</p>
-        <p>Built with <i class="fas fa-heart" style="color: #ff1744;"></i> by Rivindu | Powered by PHP & MySQL</p>
+        <p>Built with <i class="fas fa-heart" style="color: #ff1744;"></i> by Tourism management hub | Powered by PHP & MySQL</p>
     </div>
 </footer>
 
