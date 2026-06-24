@@ -43,6 +43,20 @@ include('includes/navbar.php');
     box-shadow: 0 4px 12px rgba(124, 58, 237, 0.45);
 }
 
+.page-countries .breadcrumb {
+    background: rgba(255, 255, 255, 0.34);
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.page-countries .breadcrumb .current,
+.page-countries .breadcrumb .separator {
+    color: #1f2937;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.55);
+}
+
 body.dark-mode .page-countries {
     background-color: rgba(6, 8, 22, 0.58);
     background-blend-mode: multiply;
@@ -175,7 +189,7 @@ body.dark-mode .page-countries .search-bar .clear-btn {
                             <g><path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"></path></g>
                         </svg>
                     </span>
-                    <input type="text" id="countrySearch" placeholder="Search countries..." autocomplete="off">
+                    <input type="text" id="countrySearch" data-search-input data-search-grid="#countriesGrid" data-search-clear="#clearCountrySearch" data-search-empty="#noCountryResults" placeholder="Search countries..." autocomplete="off">
                     <button class="clear-btn" id="clearCountrySearch" title="Clear search">x</button>
                 </div>
             </div>
@@ -196,7 +210,7 @@ if ($result->num_rows > 0) {
 
     <div class="card" data-name="<?php echo strtolower(htmlspecialchars($row['name'])); ?>">
 
-        <img src="<?php 
+        <img loading="lazy" src="<?php 
             $img = $row['image'] ?? 'default.jpg';
             $img = str_replace('countries/', '', $img);
             echo 'assets/images/countries/' . $img; 
@@ -226,40 +240,5 @@ if ($result->num_rows > 0) {
         </div> <!-- .container -->
     </div>
 </div>
-
-<script>
-// Country Search Functionality
-const countrySearchInput = document.getElementById('countrySearch');
-const clearCountryBtn = document.getElementById('clearCountrySearch');
-const countryCards = document.querySelectorAll('#countriesGrid .card');
-const noCountryResults = document.getElementById('noCountryResults');
-
-countrySearchInput.addEventListener('input', function () {
-    const query = this.value.trim().toLowerCase();
-    let visibleCount = 0;
-
-    countryCards.forEach(card => {
-        const name = card.getAttribute('data-name');
-        if (name.includes(query)) {
-            card.style.display = '';
-            visibleCount++;
-        } else {
-            card.style.display = 'none';
-        }
-    });
-
-    // Show/hide "no results" message
-    noCountryResults.style.display = visibleCount === 0 ? 'block' : 'none';
-
-    // Show/hide clear button
-    clearCountryBtn.style.display = query.length > 0 ? 'inline' : 'none';
-});
-
-clearCountryBtn.addEventListener('click', function () {
-    countrySearchInput.value = '';
-    countrySearchInput.dispatchEvent(new Event('input'));
-    countrySearchInput.focus();
-});
-</script>
 
 <?php include('includes/footer.php'); ?>

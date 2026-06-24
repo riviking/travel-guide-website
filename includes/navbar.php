@@ -186,13 +186,15 @@ body.dark-mode .bluish-section {
 }
 
 .breadcrumb a {
-    color: #1e90ff;
+    color: #0066cc;
     text-decoration: none;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.45);
     transition: color 0.2s;
 }
 
 .breadcrumb a:hover {
-    color: #0077e6;
+    color: #004f9e;
 }
 
 .breadcrumb .separator {

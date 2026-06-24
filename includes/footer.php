@@ -1,3 +1,5 @@
+<?php $footerBase = (basename(dirname($_SERVER['SCRIPT_NAME'])) === 'admin') ? '../' : ''; ?>
+
 <footer class="professional-footer">
     <div class="footer-container">
         <!-- About Section -->
@@ -254,6 +256,9 @@ body.dark-mode .newsletter-form input {
     }
 }
 </style>
+
+<script src="<?php echo $footerBase; ?>assets/js/search.js?v=3"></script>
+<script src="<?php echo $footerBase; ?>assets/js/app-ui.js?v=3"></script>
 
 </body>
 </html>

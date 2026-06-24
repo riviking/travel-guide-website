@@ -271,7 +271,7 @@ body.dark-mode .page-places .search-bar .clear-btn:hover {
                     <g><path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"></path></g>
                 </svg>
             </span>
-            <input type="text" id="placeSearch" placeholder="Search places..." autocomplete="off">
+            <input type="text" id="placeSearch" data-search-input data-search-grid="#placesGrid" data-search-clear="#clearSearch" data-search-empty="#noResults" placeholder="Search places..." autocomplete="off">
             <button class="clear-btn" id="clearSearch" title="Clear search">x</button>
         </div>
     </div>
@@ -322,8 +322,6 @@ body.dark-mode .page-places .search-bar .clear-btn:hover {
     <p class="no-results" id="noResults">No places found matching your search.</p>
 
 </div> <!-- container -->
-
-<script type="text/javascript" src="assets/js/search.js"></script>
 
     </div>
 </div>
