@@ -17,6 +17,19 @@ include('includes/navbar.php');
             <h1 class="page-title"><i class="fas fa-map-marked-alt"></i> Places</h1>
         </div>
 
+    <!-- ========================================== -->
+<!-- START: TOP PLACES LINK BUTTON              -->
+<!-- Added a shortcut link to top-places.php    -->
+<!-- ========================================== -->
+<div class="top-places-shortcut" style="margin: 15px 0; text-align: left;">
+    <a href="top-places.php" class="btn btn-secondary" style="display: inline-block; padding: 8px 18px; font-size: 14px; background-color: #ff9800; color: white; border: none; border-radius: 6px; text-decoration: none; font-weight: bold;">
+        ⭐ View Top Rated Places
+    </a>
+</div>
+<!-- ========================================== -->
+<!-- END: TOP PLACES LINK BUTTON                -->
+<!-- ========================================== -->
+
         
 
 <style>
