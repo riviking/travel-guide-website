@@ -217,7 +217,7 @@ if ($result->num_rows > 0) {
         ?>" alt="<?php echo htmlspecialchars($row['name']); ?>">
 
         <div class="card-body">
-            <h3><?php echo $row['name']; ?></h3>
+            <h3 style="color: pink;"><?php echo $row['name']; ?></h3>
             <p><?php echo substr($row['description'], 0, 80); ?>...</p>
 
             <a class="btn" href="country-view.php?id=<?php echo $row['id']; ?>">

@@ -19,7 +19,7 @@
         <div class="footer-section">
             <h4><i class="fas fa-link"></i> Quick Links</h4>
             <ul>
-                <li><a href="index.php"><i class="fas fa-chevron-right"></i> Home</a></li>
+                <li><a href="index.php"><i class="fas fa-chevron-right" ></i> Home</a></li>
                 <li><a href="countries.php"><i class="fas fa-chevron-right"></i> Countries</a></li>
                 <li><a href="places.php"><i class="fas fa-chevron-right"></i> Places</a></li>
                 <li><a href="blog.php"><i class="fas fa-chevron-right"></i> Blog</a></li>

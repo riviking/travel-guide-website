@@ -33,6 +33,15 @@ include('includes/navbar.php'); ?>
                 <h2>Places</h2>
                 <p>Discover amazing places and tourist attractions to visit.</p>
                 <a href="places.php" class="btn btn-primary">Explore Places</a>
+                
+                <!-- ========================================== -->
+                <!-- START: TOP PLACES BUTTON                   -->
+                <!-- Added a button referencing "top-places.php"-->
+                <!-- ========================================== -->
+                <a href="top-places.php" class="btn btn-secondary" style="margin-top: 5px;">⭐ Top Rated Places</a>
+                <!-- ========================================== -->
+                <!-- END: TOP PLACES BUTTON                     -->
+                <!-- ========================================== -->
             </div>
 
             <!-- Blog Card -->
